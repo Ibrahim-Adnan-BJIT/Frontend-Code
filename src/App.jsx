@@ -1,30 +1,33 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.scss";
-import HomePage from "./pages/homePage";
 import RegistrationPage from "./pages/registrationPage";
-import LoginPage from "./pages/loginPage";
-import Header from "./components/header";
+
+
 import NotFoundPage from "./pages/notFoundPage";
-import UserList from "./components/UserList";
-import UserDetails from "./pages/userDetailsPage";
-import Authenticate from "./components/authenticate";
-import SearchPage from "./pages/searchPage";
+
+import Navbar from "./components/header";
+import Footer from "./components/footer";
+import WelcomeSection from "./components/homepage";
+import LoginPage from "./components/loginForm";
+
 
 function App() {
   return (
     <div>
-      <Header />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
+      <Navbar />
+       { <Routes>
+        <Route path="/" element={<WelcomeSection/>} />
         <Route path="/register" element={<RegistrationPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route element={<Authenticate />}>
+        {/* <Route element={<Authenticate />}>
           <Route path="/users" element={<UserList />} />
           <Route path="/users/:userId" element={<UserDetails />} />
           <Route path="/user/search" element={<SearchPage />} />
-        </Route>
+        </Route> */}
         <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+      </Routes> } 
+      <br/>
+      <Footer/>
     </div>
   );
 }

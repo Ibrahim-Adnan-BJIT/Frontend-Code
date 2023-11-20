@@ -1,41 +1,46 @@
-import { Link, useNavigate } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
-const Header = () => {
-  const navigate = useNavigate();
-  const token = localStorage.getItem("token");
-
+const Navbar = () => {
   return (
-    <div>
-      {/* <div>Logo</div> */}
+    <>
+      {/* Custom CSS */}
+      <style>
+        {`
+          body {
+            padding-top: 56px; /* Adjust based on navbar height */
+          }
+          .big-title {
+            font-size: 1.5rem; /* Adjust the font size as needed */
+            font-weight: bold;
+          }
+        `}
+      </style>
 
-      <div style={{ display: "flex", justifyContent: "space-around" }}>
-        <Link to="/">Home</Link>
-        {token && (
-          <>
-            <Link to="/users">User List</Link>
-            <Link to="/user/search">Search User</Link>
-          </>
-        )}
-        {!token && (
-          <>
-            <Link to="/register">Register</Link>
-            <Link to="/login">Login</Link>
-          </>
-        )}
+      {/* Navbar */}
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div className="container">
+          {/* Big Title */}
+          <Link className="navbar-brand big-title" to="/">
+            Expo Health Care
+          </Link>
 
-        {token && (
-          <button
-            onClick={() => {
-              localStorage.removeItem("token");
-              navigate("/login");
-            }}
-          >
-            Logout
-          </button>
-        )}
-      </div>
-    </div>
+          {/* Login and Registration Options */}
+          <div className="d-flex">
+            <Link className="nav-link text-white" to="/login">
+              Login / 
+            </Link>
+
+            <Link className="nav-link text-white" to="/register">
+              Register
+            </Link>
+          </div>
+        </div>
+      </nav>
+    </>
   );
 };
 
-export default Header;
+export default Navbar;

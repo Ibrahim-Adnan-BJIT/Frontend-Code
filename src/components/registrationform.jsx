@@ -1,94 +1,87 @@
-import axios from "axios";
-import { useState } from "react";
-import axiosInstance from "../utils/axiosInstance";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const RegistrationForm = () => {
-  const navigate = useNavigate();
+const RegistrationPage = () => {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    gender: '',
+  });
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isRegistrationDone, setIsRegistrationDone] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
-  const handleRegister = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    const data = {
-      // username: name,
-      email: email,
-      password: password,
-    };
+    // Check if any field is empty
+    for (const key in formData) {
+      if (formData[key] === '') {
+        toast.error('Please fill in all fields.');
+        return;
+      }
+    }
 
-    setIsLoading(true);
-    axiosInstance
-      .post("/post", data)
-      .then((resp) => {
-        console.log("The Response", resp);
-        setIsRegistrationDone(true);
-        navigate("/login");
-        // setIsLoading(false);
+    // Send data to the API using Axios
+    axios.post('http://localhost:9898/api/v2/auth/register/patient', formData)
+      .then(response => {
+        console.log(response.data);
+        // Handle success
+        toast.success('Registration successful!');
       })
-      .catch((error) => {
-        console.log("Error ", error);
-        setError(error);
-        // setIsLoading(false);
-      })
-      .finally(() => {
-        setIsLoading(false);
+      .catch(error => {
+        console.error('Error:', error);
+        // Handle error
+        toast.error('Registration failed. Please try again.');
       });
   };
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
-      <h1>Registration</h1>
-      {isRegistrationDone && (
-        <h2 style={{ color: "green" }}>Successfully Done Registration</h2>
-      )}
-      {isLoading && <h1>Loading.....</h1>}
-      <form onSubmit={handleRegister}>
-        <div>
-          <h4>Name</h4>
-          <input
-            value={name}
-            placeholder="Enter Name"
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-          />
-        </div>
-
-        <div>
-          <h4>Email</h4>
-          <input
-            value={email}
-            placeholder="Enter Email"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
-        </div>
-
-        <div>
-          <h4>Password</h4>
-          <input
-            value={password}
-            placeholder="Enter Password"
-            type="password"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-        </div>
-
-        <button type="submit">Register</button>
-      </form>
+    <div className="container mt-5 d-flex justify-content-center align-items-center">
+      <div className="card p-5">
+        <h2 className="text-center mb-4">Registration Page</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="firstName" className="form-label">First Name</label>
+            <input type="text" className="form-control" id="firstName" name="firstName" onChange={handleChange} value={formData.firstName} />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="lastName" className="form-label">Last Name</label>
+            <input type="text" className="form-control" id="lastName" name="lastName" onChange={handleChange} value={formData.lastName} />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">Email</label>
+            <input type="email" className="form-control" id="email" name="email" onChange={handleChange} value={formData.email} />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">Password</label>
+            <input type="password" className="form-control" id="password" name="password" onChange={handleChange} value={formData.password} />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="gender" className="form-label">Gender</label>
+            <select className="form-select" id="gender" name="gender" onChange={handleChange} value={formData.gender}>
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+          <button type="submit" className="btn btn-primary w-100">Register</button>
+        </form>
+        <br/>
+        <ToastContainer />
+      </div>
     </div>
+    
   );
 };
 
-export default RegistrationForm;
+export default RegistrationPage;

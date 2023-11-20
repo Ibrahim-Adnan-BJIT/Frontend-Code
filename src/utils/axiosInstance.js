@@ -16,7 +16,7 @@ axiosInstance.interceptors.request.use((config) => {
 });
 
 export const axiosInstanceProductService = axios.create({
-  baseURL: "https://localhost:3001",
+  baseURL: "https://localhost:9898",
   timeout: 3000,
 });
 
