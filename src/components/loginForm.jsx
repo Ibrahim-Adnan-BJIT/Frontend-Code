@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -6,6 +6,14 @@ import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    console.log(token);
+    if (token) {
+      navigate("/dashboard");
+    }
+  }, []);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -48,7 +56,7 @@ const LoginPage = () => {
       localStorage.setItem("role", role);
 
       // Navigate to the dashboard
-      navigate("/dashboard");
+      window.location.reload();
 
       // Handle success
       toast.success("Login successful!");
