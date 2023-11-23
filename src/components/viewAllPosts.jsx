@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Card, Button } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);
@@ -37,7 +37,17 @@ const PostList = () => {
   return (
     <div className="page-section">
       <div className="container">
-        <h1 className="text-center mb-5 wow fadeInUp">All Posts</h1>
+        <div className="d-flex justify-content-between align-items-center mb-4">
+          <h1 className="mb-0 wow fadeInUp">Group Posts</h1>
+          <div className="d-flex">
+            <Link to={`/my-posts/${groupId}`} className="btn btn-primary mr-2">
+              MyPosts
+            </Link>
+            <Link to={`/post-here/${groupId}`} className="btn btn-success">
+              Post Here
+            </Link>
+          </div>
+        </div>
 
         {posts.map((post) => (
           <Card

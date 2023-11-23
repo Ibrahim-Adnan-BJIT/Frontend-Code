@@ -19,6 +19,16 @@ import Dashboard from "./components/patietDashBoard";
 import AllCategories from "./components/seeCommunities";
 import PostList from "./components/viewAllPosts";
 import PostDetails from "./components/viewAPost";
+import MyPosts from "./components/myPosts";
+import EditPost from "./components/editPost";
+import AddPost from "./components/createPost";
+import UserProfile from "./components/patientProfile";
+import UpdateHealthData from "./components/healthData";
+import Recommendations from "./components/viewRecommendations";
+import CreateProgress from "./components/createProgress";
+import IncompleteProgress from "./components/viewIncompleteProgress";
+import UpdateGoal from "./components/updateTrack";
+import CompletedProgress from "./components/completedProgress";
 
 function App() {
   return (
@@ -45,10 +55,23 @@ function App() {
                 path="/see-appointments"
                 element={<ListOfAppointments />}
               />
+              <Route path="/recommendation" element={<Recommendations />} />
               <Route path="/see-community" element={<AllCategories />} />
+              <Route path="/profile" element={<UserProfile />} />
+              <Route path="/health-data" element={<UpdateHealthData />} />
+              <Route path="/create-track" element={<CreateProgress />} />
+              <Route
+                path="/incomplete-track"
+                element={<IncompleteProgress />}
+              />
+              <Route path="/complete-track" element={<CompletedProgress />} />
+              <Route path="/edit-progress/:goalId" element={<UpdateGoal />} />
 
               <Route path="/category/:groupId" element={<PostList />} />
               <Route path="/post-details/:postId" element={<PostDetails />} />
+              <Route path="/my-posts/:groupId" element={<MyPosts />} />
+              <Route path="/edit-post/:postId" element={<EditPost />} />
+              <Route path="/post-here/:groupId" element={<AddPost />} />
             </Route>
           }
           <Route path="*" element={<NotFoundPage />} />
