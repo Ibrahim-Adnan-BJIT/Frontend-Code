@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const DoctorList = () => {
+const DoctorResourceList = () => {
   const [doctors, setDoctors] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -76,10 +76,10 @@ const DoctorList = () => {
                   </h5>
                   <p className="card-text">Speciality: {doctor.speciality}</p>
                   <Link
-                    to={`/appointments/${doctor.doctorId}`}
+                    to={`/allocate/${doctor.doctorId}`}
                     className="btn btn-primary"
                   >
-                    See Appointments
+                    Allocate Resource
                   </Link>
                 </div>
               </div>
@@ -91,4 +91,4 @@ const DoctorList = () => {
   );
 };
 
-export default DoctorList;
+export default DoctorResourceList;

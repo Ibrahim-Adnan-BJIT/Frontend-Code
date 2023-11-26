@@ -2,6 +2,8 @@ import React from "react";
 
 import Navbar from "./header";
 import MyNavbar from "./patientNavbar";
+import AdminNavbar from "./adminsNavbar";
+
 
 const MainComponent = () => {
   // Retrieve token from local storage
@@ -19,7 +21,7 @@ const MainComponent = () => {
   if (role === "PATIENT") {
     return <MyNavbar />;
   } else if (role === "ADMIN") {
-    return <MyNavbar />;
+    return <AdminNavbar />;
   } else if (role === "DOCTOR") {
     return <MyNavbar />;
   } else {

@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Card, Button } from "react-bootstrap";
 import { useNavigate, useParams, Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
   const { groupId } = useParams(); // Access groupId from params
+  const userRole = localStorage.getItem("role");
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -23,6 +26,7 @@ const PostList = () => {
         setPosts(response.data);
       } catch (error) {
         console.error("Error fetching posts:", error);
+        toast.error("Error fetching posts", { position: toast.POSITION.BOTTOM_RIGHT });
       }
     };
 
@@ -32,6 +36,32 @@ const PostList = () => {
   const handleViewDetails = (postId) => {
     // Navigate to the post details page with the post ID
     navigate(`/post-details/${postId}`);
+  };
+
+  const handleDelete = async (postId) => {
+    try {
+      const token = localStorage.getItem("token");
+      await axios.delete(
+        `http://localhost:8070/api/community/delete/post/${postId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      // Optionally, you can update the state or re-fetch posts after successful deletion
+      const updatedPosts = posts.filter((post) => post.postId !== postId);
+      setPosts(updatedPosts);
+      
+      // Show success toast
+      toast.success("Post deleted successfully!", { position: toast.POSITION.BOTTOM_RIGHT });
+    } catch (error) {
+      console.error("Error deleting post:", error.response.data.message);
+      
+      // Show error toast
+      toast.error("Error deleting post", { position: toast.POSITION.BOTTOM_RIGHT });
+    }
   };
 
   return (
@@ -77,10 +107,21 @@ const PostList = () => {
               >
                 View Details
               </Button>
+
+              {userRole === "ADMIN" && (
+                <Button
+                  variant="danger"
+                  className="ml-2"
+                  onClick={() => handleDelete(post.postId)}
+                >
+                  Delete
+                </Button>
+              )}
             </Card.Body>
           </Card>
         ))}
       </div>
+      <ToastContainer />
     </div>
   );
 };

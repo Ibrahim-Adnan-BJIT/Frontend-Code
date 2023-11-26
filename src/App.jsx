@@ -29,6 +29,16 @@ import CreateProgress from "./components/createProgress";
 import IncompleteProgress from "./components/viewIncompleteProgress";
 import UpdateGoal from "./components/updateTrack";
 import CompletedProgress from "./components/completedProgress";
+import HealthDataChart from "./components/healthTrack";
+import HealthStateDisplay from "./components/healthTrack";
+import MedicineList from "./components/medicineList";
+import SeeAppointmentsList from "./components/seeAllAppointmentsByAdmin";
+import RegistrationDoctorPage from "./components/registerDoctor";
+import CreateResource from "./components/allocation";
+import DoctorResourceList from "./components/getDoctorsForResource";
+import CreateMedicine from "./components/createMedicine";
+import AllUsers from "./components/getAllUsers";
+import UpdateMedicine from "./components/updateMedicine";
 
 function App() {
   return (
@@ -60,16 +70,25 @@ function App() {
               <Route path="/profile" element={<UserProfile />} />
               <Route path="/health-data" element={<UpdateHealthData />} />
               <Route path="/create-track" element={<CreateProgress />} />
+              <Route path="/health-track" element={<HealthStateDisplay />} />
+              <Route path="/medicine-list" element={<MedicineList />} />
+              <Route path="/seeappointment-list" element={<SeeAppointmentsList />} />
+              <Route path="/register-doctors" element={<RegistrationDoctorPage />} />
               <Route
                 path="/incomplete-track"
                 element={<IncompleteProgress />}
               />
               <Route path="/complete-track" element={<CompletedProgress />} />
+              <Route path="/allocate-resource" element={<DoctorResourceList />} />
               <Route path="/edit-progress/:goalId" element={<UpdateGoal />} />
+              <Route path="/allocate/:doctorId" element={<CreateResource />} />
+              <Route path="/allocate-medicine" element={<CreateMedicine />} />
+              <Route path="/user-list" element={<AllUsers />} />
 
               <Route path="/category/:groupId" element={<PostList />} />
               <Route path="/post-details/:postId" element={<PostDetails />} />
               <Route path="/my-posts/:groupId" element={<MyPosts />} />
+              <Route path="/medicine-update/:medicineId" element={<UpdateMedicine />} />
               <Route path="/edit-post/:postId" element={<EditPost />} />
               <Route path="/post-here/:groupId" element={<AddPost />} />
             </Route>

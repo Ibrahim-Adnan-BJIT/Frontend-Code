@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, Link } from "react-router-dom";
 
-const MyNavbar = () => {
+const AdminNavbar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -18,42 +18,25 @@ const MyNavbar = () => {
     navigate("/");
   };
 
-  const handleSeeAppointments = () => {
-    // Navigate to the see-appointments page
-    navigate("/see-appointments");
-  };
+ 
 
   const handleProfile = () => {
     // Navigate to the profile page
     navigate("/profile");
   };
-  const handleHealthData = () => {
-    // Navigate to the profile page
-    navigate("/health-data");
-  };
-  const handleRecommendation = () => {
-    // Navigate to the profile page
-    navigate("/recommendation");
-  };
-  const handletrack = () => {
-    // Navigate to the profile page
-    navigate("/create-track");
-  };
-  const handleIncomplteteTrack = () => {
-    // Navigate to the profile page
-    navigate("/incomplete-track");
-  };
-  const handleCompletedProgress = () => {
-    // Navigate to the profile page
-    navigate("/complete-track");
-  };
-  const handleHealthTrack = () => {
-    // Navigate to the profile page
-    navigate("/health-track");
-  };
+ 
+
   const handleMedicineList = () => {
     // Navigate to the profile page
     navigate("/medicine-list");
+  };
+  const handleAppointmentList = () => {
+    // Navigate to the profile page
+    navigate("/seeappointment-list");
+  };
+  const handleUserList = () => {
+    // Navigate to the profile page
+    navigate("/user-list");
   };
 
   return (
@@ -67,30 +50,18 @@ const MyNavbar = () => {
           }
           id="basic-nav-dropdown"
         >
-          <NavDropdown.Item onClick={handleSeeAppointments}>
-            See Appointments
-          </NavDropdown.Item>
+         
           <NavDropdown.Item onClick={handleProfile}>Profile</NavDropdown.Item>
-          <NavDropdown.Item onClick={handleHealthData}>
-            Health Data
-          </NavDropdown.Item>
-          <NavDropdown.Item onClick={handleRecommendation}>
-            Recommendations
-          </NavDropdown.Item>
-          <NavDropdown.Item onClick={handletrack}>
-            Track a Progress
-          </NavDropdown.Item>
-          <NavDropdown.Item onClick={handleIncomplteteTrack}>
-            Incomplete Progress
-          </NavDropdown.Item>
-          <NavDropdown.Item onClick={handleCompletedProgress}>
-            Completed Progress
-          </NavDropdown.Item>
-          <NavDropdown.Item onClick={handleHealthTrack}>
-            Health Track
-          </NavDropdown.Item>
+         
+     
           <NavDropdown.Item onClick={handleMedicineList}>
            View Medicines
+          </NavDropdown.Item>
+          <NavDropdown.Item onClick={handleAppointmentList}>
+            See All Appointments
+          </NavDropdown.Item>
+          <NavDropdown.Item onClick={handleUserList}>
+            See All Users
           </NavDropdown.Item>
         </NavDropdown>
 
@@ -122,4 +93,4 @@ const MyNavbar = () => {
   );
 };
 
-export default MyNavbar;
+export default AdminNavbar;
