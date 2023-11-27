@@ -29,7 +29,7 @@ import CreateProgress from "./components/createProgress";
 import IncompleteProgress from "./components/viewIncompleteProgress";
 import UpdateGoal from "./components/updateTrack";
 import CompletedProgress from "./components/completedProgress";
-import HealthDataChart from "./components/healthTrack";
+
 import HealthStateDisplay from "./components/healthTrack";
 import MedicineList from "./components/medicineList";
 import SeeAppointmentsList from "./components/seeAllAppointmentsByAdmin";
@@ -39,6 +39,13 @@ import DoctorResourceList from "./components/getDoctorsForResource";
 import CreateMedicine from "./components/createMedicine";
 import AllUsers from "./components/getAllUsers";
 import UpdateMedicine from "./components/updateMedicine";
+import CreateDoctorSlots from "./components/creatingSlots";
+import MySlots from "./components/slotList";
+import DoctorAppointments from "./components/doctorsAppointment";
+
+import UpdateSkills from "./components/doctorSkills";
+import Comments from "./components/viewAllComments";
+import SlotSearch from "./components/helpDesk";
 
 function App() {
   return (
@@ -46,6 +53,7 @@ function App() {
       <MainComponent />
       {
         <Routes>
+          <Route path="/help" element={<SlotSearch />} />
           <Route path="/" element={<WelcomeSection />} />
           <Route path="/register" element={<RegistrationPage />} />
           <Route path="/login" element={<LoginPage />} />
@@ -66,29 +74,50 @@ function App() {
                 element={<ListOfAppointments />}
               />
               <Route path="/recommendation" element={<Recommendations />} />
+              <Route path="/qualification" element={<UpdateSkills />} />
+              <Route
+                path="/appointment-list"
+                element={<DoctorAppointments />}
+              />
+              <Route path="/slot-list" element={<MySlots />} />
+              <Route path="/slot-allocation" element={<CreateDoctorSlots />} />
               <Route path="/see-community" element={<AllCategories />} />
               <Route path="/profile" element={<UserProfile />} />
               <Route path="/health-data" element={<UpdateHealthData />} />
               <Route path="/create-track" element={<CreateProgress />} />
               <Route path="/health-track" element={<HealthStateDisplay />} />
               <Route path="/medicine-list" element={<MedicineList />} />
-              <Route path="/seeappointment-list" element={<SeeAppointmentsList />} />
-              <Route path="/register-doctors" element={<RegistrationDoctorPage />} />
+              <Route
+                path="/seeappointment-list"
+                element={<SeeAppointmentsList />}
+              />
+              <Route
+                path="/register-doctors"
+                element={<RegistrationDoctorPage />}
+              />
               <Route
                 path="/incomplete-track"
                 element={<IncompleteProgress />}
               />
               <Route path="/complete-track" element={<CompletedProgress />} />
-              <Route path="/allocate-resource" element={<DoctorResourceList />} />
+
+              <Route
+                path="/allocate-resource"
+                element={<DoctorResourceList />}
+              />
               <Route path="/edit-progress/:goalId" element={<UpdateGoal />} />
               <Route path="/allocate/:doctorId" element={<CreateResource />} />
               <Route path="/allocate-medicine" element={<CreateMedicine />} />
               <Route path="/user-list" element={<AllUsers />} />
 
               <Route path="/category/:groupId" element={<PostList />} />
+              <Route path="/comments/:postId" element={<Comments />} />
               <Route path="/post-details/:postId" element={<PostDetails />} />
               <Route path="/my-posts/:groupId" element={<MyPosts />} />
-              <Route path="/medicine-update/:medicineId" element={<UpdateMedicine />} />
+              <Route
+                path="/medicine-update/:medicineId"
+                element={<UpdateMedicine />}
+              />
               <Route path="/edit-post/:postId" element={<EditPost />} />
               <Route path="/post-here/:groupId" element={<AddPost />} />
             </Route>
@@ -97,6 +126,7 @@ function App() {
         </Routes>
       }
       <br />
+
       <Footer />
       <ToastContainer />
     </div>

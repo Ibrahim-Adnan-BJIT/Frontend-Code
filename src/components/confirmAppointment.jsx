@@ -27,8 +27,11 @@ const TakeAppointment = () => {
         navigate("/dashboard");
       })
       .catch((error) => {
-        console.error("Error booking appointment:", error);
-        toast.error("Failed to book appointment. Please try again.");
+        console.error(
+          "Error booking appointment:",
+          error.response.data.message
+        );
+        toast.error(error.response.data.message);
       });
   }, [slotId, navigate]);
 

@@ -5,6 +5,7 @@ import { useParams, Link } from "react-router-dom";
 const SlotsTable = () => {
   const { doctorId } = useParams();
   const [slots, setSlots] = useState([]);
+  const [searchDate, setSearchDate] = useState("");
 
   useEffect(() => {
     // Retrieve the token from local storage
@@ -26,9 +27,26 @@ const SlotsTable = () => {
       });
   }, [doctorId]);
 
+  // Filter slots based on the search date
+  const filteredSlots = searchDate
+    ? slots.filter((slot) => slot.date === searchDate)
+    : slots;
+
   return (
     <div className="container mt-4">
       <h2>Appointment Slots</h2>
+      <div className="mb-3">
+        <label htmlFor="searchDate" className="form-label">
+          Search by Date:
+        </label>
+        <input
+          type="date"
+          className="form-control"
+          id="searchDate"
+          value={searchDate}
+          onChange={(e) => setSearchDate(e.target.value)}
+        />
+      </div>
       <table className="table table-bordered mt-3">
         <thead>
           <tr>
@@ -41,7 +59,7 @@ const SlotsTable = () => {
           </tr>
         </thead>
         <tbody>
-          {slots.map((slot) => (
+          {filteredSlots.map((slot) => (
             <tr key={slot.slotId}>
               <td>{slot.date}</td>
               <td>{slot.startTime}</td>

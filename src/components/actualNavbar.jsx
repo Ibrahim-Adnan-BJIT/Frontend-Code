@@ -3,7 +3,7 @@ import React from "react";
 import Navbar from "./header";
 import MyNavbar from "./patientNavbar";
 import AdminNavbar from "./adminsNavbar";
-
+import DoctorNavbar from "./doctorNavbar";
 
 const MainComponent = () => {
   // Retrieve token from local storage
@@ -23,7 +23,7 @@ const MainComponent = () => {
   } else if (role === "ADMIN") {
     return <AdminNavbar />;
   } else if (role === "DOCTOR") {
-    return <MyNavbar />;
+    return <DoctorNavbar />;
   } else {
     // Default case (you can handle other roles as needed)
     return <Navbar />;

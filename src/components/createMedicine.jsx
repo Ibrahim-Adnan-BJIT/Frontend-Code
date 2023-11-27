@@ -82,7 +82,11 @@ const CreateMedicine = () => {
                 onChange={(e) => setExpire(e.target.value)}
               />
             </div>
-            <button type="button" className="btn btn-success" onClick={handleSubmit}>
+            <button
+              type="button"
+              className="btn btn-success"
+              onClick={handleSubmit}
+            >
               Create Medicine
             </button>
           </form>

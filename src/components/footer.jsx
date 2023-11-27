@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
 const Footer = () => {
-    const footerStyle = {
-        backgroundColor: '#000000', // Dark black background color
-        color: 'white', // Text color
-      };
+  const footerStyle = {
+    backgroundColor: "#f5f5f5", // Ash color
+    color: "#333", // Text color
+  };
 
   return (
     <footer className="page-footer" style={footerStyle}>
@@ -13,34 +13,62 @@ const Footer = () => {
           <div className="col-sm-6 col-lg-3 py-3">
             <h5>Company</h5>
             <ul className="footer-menu">
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Career</a></li>
-              <li><a href="#">Editorial Team</a></li>
-              <li><a href="#">Protection</a></li>
+              <li>
+                <a href="#">About Us</a>
+              </li>
+              <li>
+                <a href="#">Career</a>
+              </li>
+              <li>
+                <a href="#">Editorial Team</a>
+              </li>
+              <li>
+                <a href="#">Protection</a>
+              </li>
             </ul>
           </div>
           <div className="col-sm-6 col-lg-3 py-3">
             <h5>More</h5>
             <ul className="footer-menu">
-              <li><a href="#">Terms & Condition</a></li>
-              <li><a href="#">Privacy</a></li>
-              <li><a href="#">Advertise</a></li>
-              <li><a href="#">Join as Doctors</a></li>
+              <li>
+                <a href="#">Terms & Condition</a>
+              </li>
+              <li>
+                <a href="#">Privacy</a>
+              </li>
+              <li>
+                <a href="#">Advertise</a>
+              </li>
+              <li>
+                <a href="#">Join as Doctors</a>
+              </li>
             </ul>
           </div>
           <div className="col-sm-6 col-lg-3 py-3">
             <h5>Our partner</h5>
             <ul className="footer-menu">
-              <li><a href="#">One-Fitness</a></li>
-              <li><a href="#">One-Drugs</a></li>
-              <li><a href="#">One-Live</a></li>
+              <li>
+                <a href="#">One-Fitness</a>
+              </li>
+              <li>
+                <a href="#">One-Drugs</a>
+              </li>
+              <li>
+                <a href="#">One-Live</a>
+              </li>
             </ul>
           </div>
           <div className="col-sm-6 col-lg-3 py-3">
             <h5>Contact</h5>
-            <p className="footer-link mt-2">351 Willow Street Franklin, MA 02038</p>
-            <a href="#" className="footer-link">701-573-7582</a>
-            <a href="#" className="footer-link">healthcare@temporary.net</a>
+            <p className="footer-link mt-2">
+              351 Willow Street Franklin, MA 02038
+            </p>
+            <a href="tel:701-573-7582" className="footer-link">
+              701-573-7582
+            </a>
+            <a href="mailto:healthcare@temporary.net" className="footer-link">
+              healthcare@temporary.net
+            </a>
 
             <h5 className="mt-3">Social Media</h5>
             <div className="footer-sosmed mt-3">
@@ -63,12 +91,18 @@ const Footer = () => {
           </div>
         </div>
 
-        <hr />
+        <hr style={{ borderColor: "#ddd" }} />
 
-        <p id="copyright">
-          Copyright &copy; 2020
-          <a href="https://macodeid.com/" target="_blank" rel="noopener noreferrer">MACode ID</a>. All
-          right reserved
+        <p id="copyright" style={{ color: "#777" }}>
+          Copyright &copy; 2023{" "}
+          <a
+            href="https://macodeid.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            MACode ID
+          </a>
+          . All rights reserved
         </p>
       </div>
     </footer>

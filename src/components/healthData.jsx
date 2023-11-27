@@ -66,7 +66,6 @@ const UpdateHealthData = () => {
       }
     } catch (error) {
       console.error("Error updating health data:", error);
-      toast.error("An error occurred while updating health data");
     }
   };
 

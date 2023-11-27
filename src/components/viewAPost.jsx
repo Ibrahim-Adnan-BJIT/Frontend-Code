@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Col, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -52,7 +52,9 @@ const PostDetails = () => {
       // Update the local state or re-fetch the post details if needed
       // ...
 
-      toast.success("Upvoted successfully!");
+      toast.success("Thumbs Up!", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
       navigate("/see-community");
     } catch (error) {
       console.error("Error upvoting:", error);
@@ -78,7 +80,9 @@ const PostDetails = () => {
       // Update the local state or re-fetch the post details if needed
       // ...
 
-      toast.success("Downvoted successfully!");
+      toast.success("Thumbs Down!", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
       navigate("/see-community");
     } catch (error) {
       console.error("Error downvoting:", error);
@@ -86,40 +90,52 @@ const PostDetails = () => {
     }
   };
 
+  const handleComments = () => {
+    navigate(`/comments/${postId}`);
+  };
+
   return (
     <div className="page-section">
       <div className="container">
         <h1 className="text-center mb-5 wow fadeInUp">Post Details</h1>
 
-        <Card
-          className="mb-4"
-          style={{
-            border: "1px solid #ddd",
-            borderRadius: "8px",
-            overflow: "hidden",
-          }}
-        >
-          <Card.Body>
-            <Card.Text>
-              <strong>Author:</strong> {post.author}
-            </Card.Text>
-            <Card.Text>
-              <strong>Description:</strong> {post.description}
-            </Card.Text>
-            <Card.Text>
-              <strong>Upvotes:</strong> {post.upVote}
-            </Card.Text>
-            <Card.Text>
-              <strong>Downvotes:</strong> {post.downVote}
-            </Card.Text>
-            <Button variant="primary" onClick={handleUpvote}>
-              Upvote
-            </Button>
-            <Button variant="danger" onClick={handleDownvote}>
-              Downvote
-            </Button>
-          </Card.Body>
-        </Card>
+        <Row>
+          <Col md={8} className="mx-auto">
+            <Card className="mb-4">
+              <Card.Body>
+                <Card.Text>
+                  <strong>Author:</strong> {post.author}
+                </Card.Text>
+                <Card.Text>
+                  <strong>Description:</strong> {post.description}
+                </Card.Text>
+                <Card.Text>
+                  <strong>Upvotes:</strong> {post.upVote}
+                </Card.Text>
+                <Card.Text>
+                  <strong>Downvotes:</strong> {post.downVote}
+                </Card.Text>
+                <Button
+                  variant="primary"
+                  className="mr-2"
+                  onClick={handleUpvote}
+                >
+                  👍 Thumbs Up
+                </Button>
+                <Button
+                  variant="danger"
+                  className="mr-2"
+                  onClick={handleDownvote}
+                >
+                  👎 Thumbs Down
+                </Button>
+                <Button variant="info" onClick={handleComments}>
+                  Comments
+                </Button>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
       </div>
       <ToastContainer />
     </div>

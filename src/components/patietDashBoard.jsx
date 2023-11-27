@@ -4,8 +4,7 @@ import DoctorList from "./doctorList";
 import DoctorRegistrationMessage from "./allocateDoctor";
 import AllocateResource from "./allocateResource";
 import AllocateMedicine from "./allocateMedicine";
-
-
+import ManageSlots from "./manageSlots";
 
 const Dashboard = () => {
   // State to store the user's role
@@ -26,13 +25,12 @@ const Dashboard = () => {
         <>
           <CommunitySection />
           <br />
-         <DoctorRegistrationMessage/>
+          <DoctorRegistrationMessage />
           <br />
-          <AllocateResource/>
-          <br/>
-          <AllocateMedicine/>
-          <br/>
-      
+          <AllocateResource />
+          <br />
+          <AllocateMedicine />
+          <br />
         </>
       )}
       {role === "PATIENT" && (
@@ -45,8 +43,10 @@ const Dashboard = () => {
       )}
       {role === "DOCTOR" && (
         <>
-          {/* Include additional doctor-specific components */}
-       
+          <CommunitySection />
+          <br />
+          <ManageSlots />
+          <br />
         </>
       )}
     </>
@@ -54,6 +54,5 @@ const Dashboard = () => {
 };
 
 // Add additional components for Patient and Doctor roles as needed
-
 
 export default Dashboard;

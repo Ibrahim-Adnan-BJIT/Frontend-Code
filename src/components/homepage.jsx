@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const WelcomeSection = () => {
   return (
@@ -8,20 +8,20 @@ const WelcomeSection = () => {
         <div className="row align-items-center">
           <div className="col-lg-6 py-3 wow fadeInUp">
             <h1>
-              Welcome to Your Health <br />
+              Welcome to Our Health <br />
               Center
             </h1>
             <p className="text-grey mb-4">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-              diam nonumy eirmod tempor invidunt ut labore et dolore magna
-              aliquyam erat, sed diam voluptua. At vero eos et accusam et
-              justo duo dolores et ea rebum. Accusantium aperiam earum ipsa
-              eius, inventore nemo labore eaque porro consequatur ex
-              aspernatur. Explicabo, excepturi accusantium! Placeat voluptates
-              esse ut optio facilis!
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+              erat, sed diam voluptua. At vero eos et accusam et justo duo
+              dolores et ea rebum. Accusantium aperiam earum ipsa eius,
+              inventore nemo labore eaque porro consequatur ex aspernatur.
+              Explicabo, excepturi accusantium! Placeat voluptates esse ut optio
+              facilis!
             </p>
-            <Link to="about.html" className="btn btn-primary">
-              Want to take an Appointment ?
+            <Link to="/help" className="btn btn-primary">
+              Need Help ?
             </Link>
           </div>
           <div className="col-lg-6 wow fadeInRight" data-wow-delay="400ms">
